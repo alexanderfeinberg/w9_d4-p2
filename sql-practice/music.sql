@@ -8,12 +8,23 @@ CREATE TABLE bands (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name VARCHAR(100)
 );
+
 CREATE TABLE musicians (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   first_name VARCHAR(100) NOT NULL,
-  last_name VARCHAR(100)
+  last_name VARCHAR(100),
+  bands_id INTEGER,
+  FOREIGN KEY (bands_id) REFERENCES bands(id)
 );
 CREATE TABLE instruments (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   type VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE musicians_instruments (
+  id INTEGER PRIMARY KEY,
+  musician_id INTEGER,
+  instruments_id INTEGER,
+  FOREIGN KEY (musician_id) REFERENCES musicians(id),
+  FOREIGN KEY (instruments_id) REFERENCES instruments(id)
 );
